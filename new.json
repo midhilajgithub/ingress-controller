@@ -1,0 +1,52 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeAccountAttributes",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeVpcs",
+                "elasticloadbalancing:DescribeLoadBalancers",
+                "elasticloadbalancing:DescribeListeners",
+                "elasticloadbalancing:DescribeRules",
+                "elasticloadbalancing:DescribeTargetGroups",
+                "elasticloadbalancing:DescribeSSLPolicies",
+                "elasticloadbalancing:DescribeTags"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:CreateLoadBalancer",
+                "elasticloadbalancing:CreateTargetGroup",
+                "elasticloadbalancing:CreateListener",
+                "elasticloadbalancing:CreateRule"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:AddTags",
+                "elasticloadbalancing:RemoveTags"
+            ],
+            "Resource": [
+                "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
+                "arn:aws:elasticloadbalancing:*:*:loadbalancer/net/*/*",
+                "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*"
+            ]
+        }
+    ]
+}
